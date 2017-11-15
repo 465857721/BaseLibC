@@ -6,17 +6,17 @@ package com.king.batterytest.fbaselib.main.iview;
 
 public interface IBaseVIew {
 
-    void showLoading();//展示加载框
+    void showLoading();
 
-    void showLoading(boolean can);// 是否能用户取消
+    void showLoading(boolean can);
 
     void onTimeOut();
 
-    void dismissLoading();//取消加载框展示
+    void dismissLoading();
 
-    void onNetError();// 网络错误
+    void onNetError();
 
-    void onError(String s);// 接口 返回非 0
+    void onError(String s);
 
     void onFormJsonError();
 

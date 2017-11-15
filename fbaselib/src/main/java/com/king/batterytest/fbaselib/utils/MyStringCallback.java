@@ -12,9 +12,7 @@ import okhttp3.Request;
 import static com.king.batterytest.fbaselib.utils.GsonUtils.getGsonInstance;
 
 
-/**
- * Created by zhoukang on 2017/5/3.
- */
+
 
 public class MyStringCallback extends StringCallback {
     private boolean showDialog;

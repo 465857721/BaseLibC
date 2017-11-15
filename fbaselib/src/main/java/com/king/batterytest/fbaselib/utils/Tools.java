@@ -36,9 +36,6 @@ import java.util.regex.Pattern;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
-/**
- * Created by alvis on 2017/4/12.
- */
 
 public class Tools {
     private static Toast toast;
@@ -50,8 +47,6 @@ public class Tools {
         return new SharePreferenceUtil(mContext.getApplicationContext(), "wetime");
     }
 
-
-    // 底部弹出Toast
     public static void toastInBottom(Context context, String msg) {
         if (context != null) {
             if (toast == null) {
@@ -67,7 +62,6 @@ public class Tools {
     public static void logout(Context mContext) {
         SharePreferenceUtil spu = getSpu(mContext);
         spu.setToken("");
-//        spu.setPsw("");
     }
 
     public static void hideSoftInput(Activity mActivity) {
@@ -77,7 +71,7 @@ public class Tools {
                     .hideSoftInputFromWindow(mIBinder, InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
-    // 选择图片
+
     public static void gotoSelectPic(Activity mActivity) {
         Intent intent = new Intent(mActivity, MultiImageSelectorActivity.class);
         intent.putExtra(MultiImageSelectorActivity.EXTRA_SHOW_CAMERA, true);
@@ -142,18 +136,11 @@ public class Tools {
 //        set.start();
     }
 
-    /**
-     * 显示等待对话框
-     *
-     * @param context
-     */
     public static void showWaitDialog(Context context) {
-//
-
         showWaitDialog(context, true);
     }
 
-    //校验价格
+
 
     public static boolean checkPrice(String price) {
         if (price.contains(".")) {
@@ -169,26 +156,7 @@ public class Tools {
     }
 
 
-    public static boolean checkNetwork(Context context) {
-        if (context == null)
-            return false;
 
-        ConnectivityManager conMan = (ConnectivityManager) context
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo.State mobile = conMan.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
-                .getState();
-
-        NetworkInfo.State wifi = conMan.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
-                .getState();
-        if (mobile == NetworkInfo.State.CONNECTED || mobile == NetworkInfo.State.CONNECTING)
-            return true;
-
-        if (wifi == NetworkInfo.State.CONNECTED || mobile == NetworkInfo.State.CONNECTING)
-            return true;
-
-        // Out.toast(context, R.string.network_not_connected);
-        return false;
-    }
 
     public static void hideWaitDialog() {
         if (loadingDialog != null)
@@ -307,11 +275,7 @@ public class Tools {
         }
     }
 
-    /* * 设置状态栏字体图标为深色，需要MIUIV6以上
- * @param window 需要设置的窗口
- * @param dark 是否把状态栏字体及图标颜色设置为深色
- * @return boolean 成功执行返回true
- * */
+
     public static boolean MIUISetStatusBarLightMode(Window window, boolean dark) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;
@@ -326,9 +290,9 @@ public class Tools {
                 darkModeFlag = field.getInt(layoutParams);
                 Method extraFlagField = clazz.getMethod("setExtraFlags", int.class, int.class);
                 if (dark) {
-                    extraFlagField.invoke(window, darkModeFlag, darkModeFlag);  //状态栏透明且黑色字体
+                    extraFlagField.invoke(window, darkModeFlag, darkModeFlag);
                 } else {
-                    extraFlagField.invoke(window, 0, darkModeFlag);   //清除黑色字体
+                    extraFlagField.invoke(window, 0, darkModeFlag);
                 }
                 result = true;
             } catch (Exception e) {
@@ -359,11 +323,7 @@ public class Tools {
         return verName;
     }
 
-    /**
-     * 去市场更新
-     *
-     * @param mContext
-     */
+
     public static void goMarket(Context mContext) {
         try {
 
@@ -406,15 +366,7 @@ public class Tools {
         return mDisplayMetrics.widthPixels;
     }
 
-    /**
-     * 关键字 变色
-     *
-     * @param color
-     * @param text
-     * @param keyword
-     * @return
-     */
-    public static SpannableString matcherSearchText(int color, String text, String keyword) {
+      public static SpannableString matcherSearchText(int color, String text, String keyword) {
         SpannableString ss = new SpannableString(text);
         Pattern pattern = Pattern.compile(keyword);
         Matcher matcher = pattern.matcher(ss);

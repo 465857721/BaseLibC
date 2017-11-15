@@ -16,10 +16,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 
-/**
- * Created on 2017/4/11.
- */
-
 public class SpeechUtils {
     private static final String TAG = "SpeechUtils";
     private Context context;
@@ -69,39 +65,28 @@ public class SpeechUtils {
     private void initialTts() {
         this.mSpeechSynthesizer = SpeechSynthesizer.getInstance();
         this.mSpeechSynthesizer.setContext(context);
-//        this.mSpeechSynthesizer.setSpeechSynthesizerListener(this);
-        // 文本模型文件路径 (离线引擎使用)
         this.mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_TTS_TEXT_MODEL_FILE, mSampleDirPath + "/"
                 + TEXT_MODEL_NAME);
-        // 声学模型文件路径 (离线引擎使用)
         this.mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_TTS_SPEECH_MODEL_FILE, mSampleDirPath + "/"
                 + SPEECH_FEMALE_MODEL_NAME);
-        // 请替换为语音开发者平台上注册应用得到的App ID (离线授权)
-        this.mSpeechSynthesizer.setAppId("10035217"/*这里只是为了让Demo运行使用的APPID,请替换成自己的id。*/);
-        // 请替换为语音开发者平台注册应用得到的apikey和secretkey (在线授权)
-        this.mSpeechSynthesizer.setApiKey("luj8z1cgcGgWn6D6n8yN96Ru",
-                "d67d9b1eb3aa627beeb247407d38ee8c"/*这里只是为了让Demo正常运行使用APIKey,请替换成自己的APIKey*/);
-        // 发音人（在线引擎），可用参数为0,1,2,3。。。（服务器端会动态增加，各值含义参考文档，以文档说明为准。0--普通女声，1--普通男声，2--特别男声，3--情感男声。。。）
+        this.mSpeechSynthesizer.setAppId("100035217");
+
+        this.mSpeechSynthesizer.setApiKey("luj8z1cgcGgWn8D6n8yN96Ru",
+                "d67d9b1eb3aa627bfeb247407d38ee8c");
         this.mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEAKER, "0");
-        // 设置Mix模式的合成策略
+
         this.mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_MIX_MODE, SpeechSynthesizer.MIX_MODE_DEFAULT);
-        //设置音量
+
         this.mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_VOLUME, "15");
-        // 初始化tts
+
         mSpeechSynthesizer.initTts(TtsMode.MIX);
-        // 加载离线英文资源（提供离线英文合成功能）
+
         int result =
                 mSpeechSynthesizer.loadEnglishModel(mSampleDirPath + "/" + ENGLISH_TEXT_MODEL_NAME, mSampleDirPath
                         + "/" + ENGLISH_SPEECH_FEMALE_MODEL_NAME);
     }
 
-    /**
-     * 将工程需要的资源文件拷贝到SD卡中使用（
-     *
-     * @param isCover 是否覆盖已存在的目标文件
-     * @param source
-     * @param dest
-     */
+
     private void copyFromAssetsToSdcard(boolean isCover, String source, String dest) {
         File file = new File(dest);
         if (isCover || (!isCover && !file.exists())) {
@@ -163,7 +148,7 @@ public class SpeechUtils {
 
     private SpeechSynthesizeBag getSpeechSynthesizeBag(String text, String utteranceId) {
         SpeechSynthesizeBag speechSynthesizeBag = new SpeechSynthesizeBag();
-        //需要合成的文本text的长度不能超过1024个GBK字节。
+
         speechSynthesizeBag.setText(text);
         speechSynthesizeBag.setUtteranceId(utteranceId);
         return speechSynthesizeBag;
@@ -173,12 +158,11 @@ public class SpeechUtils {
 
         long l = System.currentTimeMillis();
         ArrayList<SpeechSynthesizeBag> bags = new ArrayList<SpeechSynthesizeBag>();
-        String[] strings = text.split("。");
+        String[] strings = text.split(".");
         for (int i = 0; i < strings.length; i++) {
             bags.add(getSpeechSynthesizeBag(strings[i], String.valueOf(i)));
         }
 
-        Log.e("mainactivity", System.currentTimeMillis() - l + "");
         return bags;
     }
 

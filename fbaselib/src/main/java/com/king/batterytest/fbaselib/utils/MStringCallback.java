@@ -63,11 +63,7 @@ public class MStringCallback extends StringCallback {
             Tools.hideWaitDialog();
         }
         if (showErrorToast) {
-            if (Tools.checkNetwork(mContext)) {
-                Tools.toastInBottom(mContext, e.toString());
-            } else {
-                Tools.toastInBottom(mContext, "请检查网络");
-            }
+
 
 
         }

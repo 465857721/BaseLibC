@@ -1,4 +1,4 @@
-package com.king.batterytest.fbaselib.main;
+package com.wetime.fanc;
 
 import android.app.Activity;
 import android.app.Application;
@@ -28,12 +28,9 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 
-/**
- * Created by zhoukang on 2017/4/12.
- */
 
 public class FApp extends Application {
-    private List<Activity> oList;//用于存放所有启动的Activity的集合
+    private List<Activity> oList;
     private SharePreferenceUtil spu;
     private static FApp instance;
     public static IWXAPI mWxApi;
@@ -64,7 +61,7 @@ public class FApp extends Application {
                 .addInterceptor(new MLoggerInterceptor("http", true))
                 .connectTimeout(10000L, TimeUnit.MILLISECONDS)
                 .readTimeout(10000L, TimeUnit.MILLISECONDS)
-                //其他配置
+
                 .build();
 
         OkHttpUtils.initClient(okHttpClient);
@@ -85,20 +82,18 @@ public class FApp extends Application {
     }
 
     static {
-        //设置全局的Header构建器
+
         SmartRefreshLayout.setDefaultRefreshHeaderCreater(new DefaultRefreshHeaderCreater() {
             @Override
             public RefreshHeader createRefreshHeader(Context context, RefreshLayout layout) {
-//                layout.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white);//全局设置主题颜色
-//                return new ClassicsHeader(context).setSpinnerStyle(SpinnerStyle.Translate);//指定为经典Header，默认是 贝塞尔雷达Header
                 return new MyMaterialHeader(context);
             }
         });
-        //设置全局的Footer构建器
+
         SmartRefreshLayout.setDefaultRefreshFooterCreater(new DefaultRefreshFooterCreater() {
             @Override
             public RefreshFooter createRefreshFooter(Context context, RefreshLayout layout) {
-                //指定为经典Footer，默认是 BallPulseFooter
+
                 return new ClassicsFooter(context).setSpinnerStyle(SpinnerStyle.Translate);
             }
         });
@@ -109,39 +104,32 @@ public class FApp extends Application {
     }
 
 
-    /**
-     * 添加Activity
-     */
     public void addActivity(Activity activity) {
-        // 判断当前集合中不存在该Activity
+
         if (!oList.contains(activity)) {
-            oList.add(activity);//把当前Activity添加到集合中
+            oList.add(activity);
         }
     }
 
     private void registToWX() {
-        //AppConst.WEIXIN.APP_ID是指你应用在微信开放平台上的AppID，记得替换。
+
         mWxApi = WXAPIFactory.createWXAPI(this, "wx2fbcb61b6e5b1384", true);
-        // 将该app注册到微信
+
         mWxApi.registerApp("wx2fbcb61b6e5b1384");
     }
 
-    /**
-     * 销毁单个Activity
-     */
+
     public void removeActivity(Activity activity) {
-        //判断当前集合中存在该Activity
+
         if (oList.contains(activity)) {
-            oList.remove(activity);//从集合中移除
-            activity.finish();//销毁当前Activity
+            oList.remove(activity);
+            activity.finish();
         }
     }
 
-    /**
-     * 销毁所有的Activity
-     */
+
     public void removeALLActivity() {
-        //通过循环，把集合中的所有Activity销毁
+
         for (Activity activity : oList) {
             activity.finish();
         }
