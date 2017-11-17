@@ -2,6 +2,7 @@ package com.king.baselib;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.king.batterytest.fbaselib.customview.multiimageselector.MultiImageSelectorActivity;
@@ -22,6 +23,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Tools.gotoSelectPic(MainActivity.this);
+                Log.e("zk  ","test");
             }
         });
     }
