@@ -45,6 +45,8 @@ public class FApp extends Application {
         }
 
 
+
+
         boolean checked = false;
         for (String s : keys) {
             SignCheck signCheck = new SignCheck(this, s);
