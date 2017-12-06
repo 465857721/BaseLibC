@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BaseLibC.iml" filepath="$PROJECT_DIR$/BaseLibC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/CTest.iml" filepath="$PROJECT_DIR$/.idea/CTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fbaselib/fbaselib.iml" filepath="$PROJECT_DIR$/fbaselib/fbaselib.iml" />
       <module fileurl="file://$PROJECT_DIR$/fbaselib/fbaselib.iml" filepath="$PROJECT_DIR$/fbaselib/fbaselib.iml" />
     </modules>
   </component>
