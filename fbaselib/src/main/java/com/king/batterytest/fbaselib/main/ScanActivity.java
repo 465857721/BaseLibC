@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 import cn.bingoogolapple.qrcode.core.QRCodeView;
 import cn.bingoogolapple.qrcode.zxing.ZXingView;
 
-public class ScanActivity extends AppCompatActivity implements QRCodeView.Delegate {
+public class ScanActivity extends BaseActivity implements QRCodeView.Delegate {
     private static final String TAG = "zk scan";
 
 

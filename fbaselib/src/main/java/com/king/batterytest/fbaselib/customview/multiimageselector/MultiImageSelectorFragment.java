@@ -36,6 +36,7 @@ import com.king.batterytest.fbaselib.customview.multiimageselector.bean.Folder;
 import com.king.batterytest.fbaselib.customview.multiimageselector.bean.Image;
 import com.king.batterytest.fbaselib.utils.FileUtils;
 import com.king.batterytest.fbaselib.utils.ScreenUtils;
+import com.king.batterytest.fbaselib.utils.Tools;
 
 import java.io.File;
 import java.io.IOException;
@@ -388,6 +389,7 @@ public class MultiImageSelectorFragment extends Fragment {
         if (requestCode == REQUEST_CAMERA) {
             if (resultCode == Activity.RESULT_OK) {
                 if (mTmpFile != null) {
+
                     if (mCallback != null) {
                         mCallback.onCameraShot(mTmpFile);
                     }
